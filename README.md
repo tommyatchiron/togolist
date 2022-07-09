@@ -10,12 +10,17 @@ In addition to basic CRUD of todo list and items, the following are implemented:
 - Health Checking
 - Input Validation
 - Logging
+- API documentation
 
 ## Configuration
 
 ### Config Location
 
 The application will read configuration from the below locations:
+
+- `/etc/togolist/config.yaml`
+- `$XDG_CONFIG_HOME/togolist/config.yaml`
+- `./config/config.yaml`
 
 ## Libraries Used
 
@@ -24,6 +29,7 @@ The application will read configuration from the below locations:
 - Config: [Viper](https://github.com/spf13/viper)
 - ORM: [GORM](https://github.com/go-gorm/gorm)
 - HTTP: [Gin](https://github.com/gin-gonic/gin)
+- Documentation: [Swagger](https://github.com/swaggo/swag)
 
 ## References
 
