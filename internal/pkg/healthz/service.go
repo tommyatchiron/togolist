@@ -15,7 +15,7 @@ func NewHealthzService(db *gorm.DB) *HealthzService {
 	return &HealthzService{db}
 }
 
-func (hs *HealthzService) healthCheck() (*dto.HealthzResult, error) {
+func (hs *HealthzService) HealthCheck() (*dto.HealthzResult, error) {
 	db, err := hs.db.DB()
 	if err != nil {
 		return nil, fmt.Errorf("fail to get underlying db: %w", err)

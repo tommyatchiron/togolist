@@ -27,7 +27,7 @@ func registerHealthzRoutes(hc *HealthzController, r *router.Router) {
 // @Success      200  {object}  dto.HealthzResult
 // @Router       /healthz [get]
 func (hc *HealthzController) healthCheck(c *gin.Context) {
-	result, err := hc.healthzService.healthCheck()
+	result, err := hc.healthzService.HealthCheck()
 	if err != nil {
 		c.AbortWithStatus(500)
 		return
