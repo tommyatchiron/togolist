@@ -7,6 +7,7 @@ import (
 
 	"github.com/tommyatchiron/togolist/internal/pkg/config"
 	"go.uber.org/fx"
+	"go.uber.org/fx/fxevent"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -14,6 +15,9 @@ import (
 var Module = fx.Options(
 	fx.Provide(New),
 	fx.Provide(NewGormLogger),
+	fx.WithLogger(func(logger *zap.SugaredLogger) fxevent.Logger {
+		return &fxevent.ZapLogger{Logger: logger.Desugar()}
+	}),
 )
 
 func New(config *config.Config) (*zap.SugaredLogger, error) {
