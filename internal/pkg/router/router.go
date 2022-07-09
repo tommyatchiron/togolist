@@ -6,7 +6,14 @@ import (
 	ginzap "github.com/gin-contrib/zap"
 	"github.com/gin-gonic/gin"
 	"github.com/tommyatchiron/togolist/internal/pkg/config"
+	"go.uber.org/fx"
 	"go.uber.org/zap"
+)
+
+var Module = fx.Options(
+	fx.Provide(New),
+	fx.Provide(NewSwaggerHandler),
+	fx.Invoke(registerSwaggerRoutes),
 )
 
 type Router struct {

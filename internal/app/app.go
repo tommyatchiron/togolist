@@ -13,10 +13,10 @@ import (
 func New() *fx.App {
 	app := fx.New(
 		fx.Provide(config.NewConfig),
-		fx.Provide(router.New),
 		fx.Provide(db.New),
 		logger.Module,
 		http.Module,
+		router.Module,
 		healthz.Module,
 	)
 	return app

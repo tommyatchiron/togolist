@@ -1,7 +1,7 @@
 package dto
 
 type HealthzResult struct {
-	Status  string               `json:"status"`
+	Status  string               `json:"status" example:"ok" enums:"ok,error"`
 	Details HealthzResultDetails `json:"details"`
 }
 
@@ -10,5 +10,5 @@ type HealthzResultDetails struct {
 }
 
 type HealthzResultDetail struct {
-	Status string `json:"status"`
+	Status string `json:"status" example:"ok" enums:"ok,error"`
 }

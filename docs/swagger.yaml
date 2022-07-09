@@ -1,0 +1,51 @@
+basePath: /v1
+definitions:
+  dto.HealthzResult:
+    properties:
+      details:
+        $ref: '#/definitions/dto.HealthzResultDetails'
+      status:
+        enum:
+        - ok
+        - error
+        example: ok
+        type: string
+    type: object
+  dto.HealthzResultDetail:
+    properties:
+      status:
+        enum:
+        - ok
+        - error
+        example: ok
+        type: string
+    type: object
+  dto.HealthzResultDetails:
+    properties:
+      db:
+        $ref: '#/definitions/dto.HealthzResultDetail'
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is an API for ToGo List application
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: ToGo List API
+  version: "1.0"
+paths:
+  /healthz:
+    get:
+      consumes:
+      - application/json
+      description: Health Checking for API services
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.HealthzResult'
+      summary: Health Checking
+swagger: "2.0"

@@ -1,0 +1,76 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is an API for ToGo List application",
+        "title": "ToGo List API",
+        "contact": {},
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/v1",
+    "paths": {
+        "/healthz": {
+            "get": {
+                "description": "Health Checking for API services",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Health Checking",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HealthzResult"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "dto.HealthzResult": {
+            "type": "object",
+            "properties": {
+                "details": {
+                    "$ref": "#/definitions/dto.HealthzResultDetails"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "ok",
+                        "error"
+                    ],
+                    "example": "ok"
+                }
+            }
+        },
+        "dto.HealthzResultDetail": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "ok",
+                        "error"
+                    ],
+                    "example": "ok"
+                }
+            }
+        },
+        "dto.HealthzResultDetails": {
+            "type": "object",
+            "properties": {
+                "db": {
+                    "$ref": "#/definitions/dto.HealthzResultDetail"
+                }
+            }
+        }
+    }
+}
