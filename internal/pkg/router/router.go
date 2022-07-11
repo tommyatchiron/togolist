@@ -29,6 +29,7 @@ func New(config *config.Config, logger *zap.SugaredLogger) *Router {
 	gin.SetMode(gin.ReleaseMode)
 	r.http = gin.New()
 	r.http.Use(ginzap.Ginzap(logger.Desugar(), time.RFC3339, true))
+	r.http.Use(gin.Recovery())
 	r.routerGroups.api = r.http.Group("/v1")
 	r.logger = logger
 	return &r
