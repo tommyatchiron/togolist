@@ -22,7 +22,6 @@ func registerHealthzRoutes(hc *HealthzController, r *router.Router) {
 // healthCheck godoc
 // @Summary      Health Checking
 // @Description  Health Checking for API services
-// @Accept       json
 // @Produce      json
 // @Success      200  {object}  dto.HealthzResult
 // @Router       /healthz [get]

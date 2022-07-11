@@ -23,9 +23,6 @@ const docTemplate = `{
         "/healthz": {
             "get": {
                 "description": "Health Checking for API services",
-                "consumes": [
-                    "application/json"
-                ],
                 "produces": [
                     "application/json"
                 ],
@@ -39,9 +36,58 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/lists": {
+            "post": {
+                "description": "Create a single List",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create List",
+                "parameters": [
+                    {
+                        "description": "Create List",
+                        "name": "list",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.CreateListInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/dto.List"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
+        "dto.CreateListInput": {
+            "type": "object",
+            "required": [
+                "description",
+                "title"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
         "dto.HealthzResult": {
             "type": "object",
             "properties": {
@@ -76,6 +122,23 @@ const docTemplate = `{
             "properties": {
                 "db": {
                     "$ref": "#/definitions/dto.HealthzResultDetail"
+                }
+            }
+        },
+        "dto.List": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "priority": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
                 }
             }
         }

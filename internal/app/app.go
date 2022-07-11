@@ -5,6 +5,7 @@ import (
 	"github.com/tommyatchiron/togolist/internal/pkg/db"
 	"github.com/tommyatchiron/togolist/internal/pkg/healthz"
 	"github.com/tommyatchiron/togolist/internal/pkg/http"
+	"github.com/tommyatchiron/togolist/internal/pkg/list"
 	"github.com/tommyatchiron/togolist/internal/pkg/logger"
 	"github.com/tommyatchiron/togolist/internal/pkg/router"
 	"go.uber.org/fx"
@@ -18,6 +19,7 @@ func New() *fx.App {
 		http.Module,
 		router.Module,
 		healthz.Module,
+		list.Module,
 	)
 	return app
 }

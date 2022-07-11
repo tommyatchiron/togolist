@@ -1,5 +1,17 @@
 basePath: /v1
 definitions:
+  dto.CreateListInput:
+    properties:
+      description:
+        type: string
+      priority:
+        type: integer
+      title:
+        type: string
+    required:
+    - description
+    - title
+    type: object
   dto.HealthzResult:
     properties:
       details:
@@ -25,6 +37,17 @@ definitions:
       db:
         $ref: '#/definitions/dto.HealthzResultDetail'
     type: object
+  dto.List:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      priority:
+        type: integer
+      title:
+        type: string
+    type: object
 host: localhost:8080
 info:
   contact: {}
@@ -37,8 +60,6 @@ info:
 paths:
   /healthz:
     get:
-      consumes:
-      - application/json
       description: Health Checking for API services
       produces:
       - application/json
@@ -48,4 +69,24 @@ paths:
           schema:
             $ref: '#/definitions/dto.HealthzResult'
       summary: Health Checking
+  /lists:
+    post:
+      consumes:
+      - application/json
+      description: Create a single List
+      parameters:
+      - description: Create List
+        in: body
+        name: list
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateListInput'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.List'
+      summary: Create List
 swagger: "2.0"
