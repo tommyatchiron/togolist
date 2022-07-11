@@ -38,6 +38,24 @@ const docTemplate = `{
             }
         },
         "/lists": {
+            "get": {
+                "description": "Get all Lists",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get All Lists",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/dto.List"
+                            }
+                        }
+                    }
+                }
+            },
             "post": {
                 "description": "Create a single List",
                 "consumes": [
@@ -67,6 +85,110 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/lists/{id}": {
+            "get": {
+                "description": "Get a single List",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get One List",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "List ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.List"
+                        }
+                    },
+                    "404": {
+                        "description": "List not found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update a single List",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update List",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "List ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Update List",
+                        "name": "list",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.UpdateListInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.List"
+                        }
+                    },
+                    "404": {
+                        "description": "List not found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a single List",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete List",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "List ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List deleted",
+                        "schema": {
+                            "$ref": "#/definitions/dto.List"
+                        }
+                    },
+                    "404": {
+                        "description": "List not found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -78,13 +200,16 @@ const docTemplate = `{
             ],
             "properties": {
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "This is my list"
                 },
                 "priority": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 0
                 },
                 "title": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "My List"
                 }
             }
         },
@@ -129,16 +254,44 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "This is my list"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 },
                 "priority": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 0
                 },
                 "title": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "My List"
+                }
+            }
+        },
+        "dto.UpdateListInput": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "example": "This is my list"
+                },
+                "id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "priority": {
+                    "type": "integer",
+                    "example": 0
+                },
+                "title": {
+                    "type": "string",
+                    "example": "My List"
                 }
             }
         }
