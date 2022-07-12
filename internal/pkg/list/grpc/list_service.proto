@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+option go_package = "github.com/tommyatchiron/togolist/internal/pkg/list/grpc";
+
+package list_service;
+
+service ListService {
+    rpc Create (CreateListInput) returns (List) {}
+    rpc GetAll (GetAllOptions) returns (RepeatedList) {}
+    rpc GetOne (ID) returns (OptionalList) {}
+    rpc Update (UpdateListInput) returns (OptionalList) {}
+    rpc Remove (ID) returns (OptionalList) {}
+}
+
+message CreateListInput {
+    string title = 2;
+    string description = 3;
+    optional sint64 priority = 4;
+}
+
+message UpdateListInput {
+    uint64 id = 1;
+    optional string title = 2;
+    optional string description = 3;
+    optional sint64 priority = 4;
+}
+
+message List {
+    uint64 id = 1;
+    string title = 2;
+    string description = 3;
+    sint64 priority = 4;
+}
+
+message OptionalList {
+    optional List list = 1;
+}
+
+message RepeatedList {
+    repeated List lists = 1;
+}
+
+message ID {
+    uint64 id = 1;
+}
+
+message GetAllOptions {
+
+}

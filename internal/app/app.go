@@ -3,6 +3,7 @@ package app
 import (
 	"github.com/tommyatchiron/togolist/internal/pkg/config"
 	"github.com/tommyatchiron/togolist/internal/pkg/db"
+	"github.com/tommyatchiron/togolist/internal/pkg/grpc"
 	"github.com/tommyatchiron/togolist/internal/pkg/healthz"
 	"github.com/tommyatchiron/togolist/internal/pkg/http"
 	"github.com/tommyatchiron/togolist/internal/pkg/list"
@@ -20,6 +21,7 @@ func New() *fx.App {
 		router.Module,
 		healthz.Module,
 		list.Module,
+		grpc.Module,
 	)
 	return app
 }

@@ -11,6 +11,9 @@ type Config struct {
 	Http struct {
 		ListenAddr string `mapstructure:"listen_addr"`
 	}
+	Grpc struct {
+		ListenAddr string `mapstructure:"listen_addr"`
+	}
 	Logs struct {
 		Path string `mapstructure:"path"`
 	}
@@ -33,6 +36,7 @@ func NewConfig() (*Config, error) {
 
 	// default variables
 	viper.SetDefault("http.listen_addr", ":8080")
+	viper.SetDefault("grpc.listen_addr", ":8080")
 	viper.SetDefault("logs.path", "/var/log/togolist")
 
 	err := viper.ReadInConfig()
