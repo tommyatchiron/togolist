@@ -7,17 +7,20 @@ import (
 	"github.com/tommyatchiron/togolist/internal/pkg/config"
 	"go.uber.org/fx"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/reflection"
 )
 
 var Module = fx.Options(
 	fx.Provide(newGrpcServer),
+	fx.Provide(health.NewServer), // Add health check
 	fx.Invoke(runGrpcServer),
+	fx.Invoke(registerHealthCheckGrpcServer),
 )
 
 func newGrpcServer() *grpc.Server {
 	ser := grpc.NewServer()
-	reflection.Register(ser)
+	reflection.Register(ser) // Enable reflection
 	return ser
 }
 
