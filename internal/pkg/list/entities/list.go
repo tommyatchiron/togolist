@@ -6,5 +6,5 @@ type List struct {
 	gorm.Model
 	Title       *string `gorm:"not null"`
 	Description *string `gorm:"not null"`
-	Priority    *int    `gorm:"not null;default:0"`
+	Priority    *int64  `gorm:"not null;default:0"`
 }

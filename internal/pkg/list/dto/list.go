@@ -6,7 +6,7 @@ type List struct {
 	ID          uint    `json:"id" example:"1"`
 	Title       *string `json:"title" example:"My List"`
 	Description *string `json:"description" example:"This is my list"`
-	Priority    *int    `json:"priority" example:"0"`
+	Priority    *int64  `json:"priority" example:"0"`
 }
 
 func FromEntity(list *entities.List) *List {

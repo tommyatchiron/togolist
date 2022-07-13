@@ -13,7 +13,7 @@ type UpdateListInput struct {
 type PartialUpdateListInput struct {
 	Title       *string `json:"title" example:"My List"`
 	Description *string `json:"description" example:"This is my list"`
-	Priority    *int    `json:"priority" example:"0"`
+	Priority    *int64  `json:"priority" example:"0"`
 }
 
 func (u *UpdateListInput) ToEntity() *entities.List {

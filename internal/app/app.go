@@ -3,6 +3,7 @@ package app
 import (
 	"github.com/tommyatchiron/togolist/internal/pkg/config"
 	"github.com/tommyatchiron/togolist/internal/pkg/db"
+	"github.com/tommyatchiron/togolist/internal/pkg/graphql"
 	"github.com/tommyatchiron/togolist/internal/pkg/grpc"
 	"github.com/tommyatchiron/togolist/internal/pkg/healthz"
 	"github.com/tommyatchiron/togolist/internal/pkg/http"
@@ -22,6 +23,7 @@ func New() *fx.App {
 		healthz.Module,
 		list.Module,
 		grpc.Module,
+		graphql.Module,
 	)
 	return app
 }

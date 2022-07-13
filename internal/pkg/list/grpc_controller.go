@@ -27,7 +27,7 @@ func (lgc *ListGrpcController) Create(ctx context.Context, createListInput *pb.C
 		Description: &createListInput.Description,
 	}
 	if createListInput.Priority != nil {
-		priority := int(*createListInput.Priority)
+		priority := int64(*createListInput.Priority)
 		createListInputDto.Priority = &priority
 	}
 	list, err := lgc.listService.Create(ctx, &createListInputDto)
@@ -86,7 +86,7 @@ func (lgc *ListGrpcController) Update(ctx context.Context, updateListInput *pb.U
 		},
 	}
 	if updateListInput.Priority != nil {
-		priority := int(*updateListInput.Priority)
+		priority := int64(*updateListInput.Priority)
 		updateListInputDto.Priority = &priority
 	}
 	list, err := lgc.listService.Update(ctx, &updateListInputDto)
